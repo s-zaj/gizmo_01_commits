@@ -38,6 +38,16 @@ git show 85eca
 git show $(git log HEAD^)
 ```
 
+### packed-refs
+
+Garbage collection will move the refs (branches and tags) into a single file called packed_refs.
+If you are wondering why your large repository doesn't have separate files, this is to improve performance, does not affect functionality.
+
+```bash
+git gc
+```
+
+
 ### git symbolic-ref
 
 A "symbolic ref" is a friendlier alias for some other ref.
@@ -58,15 +68,15 @@ git symbolic-ref HEAD refs/heads/new-branch
 
 #### HEAD
 
-The HEAD ref points to the current commit that your working directory is based on. It is often a symbolic ref pointing to the branch you have checked out, like refs/heads/main.
+Points to the current commit that your working directory is based on. It is often a symbolic ref pointing to the branch you have checked out, like refs/heads/main.
 
 #### FETCH_HEAD
 
-FETCH_HEAD is a ref that stores the branch or commit that was fetched from a remote repository during the last git fetch operation.
+Stores the branch or commit that was fetched from a remote repository during the last git fetch operation.
 
 #### ORIG_HEAD
 
-ORIG_HEAD is a ref that points to the original tip of the current branch before a potentially disruptive operation like a reset, rebase, or merge.
+Points to the original tip of the current branch before a potentially disruptive operation like a reset, rebase, or merge.
 
 Can be useful for recovering the state before such an operation was performed
 
@@ -77,7 +87,11 @@ git reset --hard ORIG_HEAD
 
 #### MERGE_HEAD
 
-MERGE_HEAD is a ref that points to the commit(s) that you are currently merging into your branch.
+Points to the commit(s) that you are currently merging into your branch.
+
+#### CHERRY_PICK_HEAD
+
+The commit that you are cherry picking.
 
 ### git rev-parse
 
