@@ -20,18 +20,22 @@ $ tree .git/refs
     └── v0.0.0
 ```
 
-
-### git log
-
 ```bash
+# view the log of commits
+
 git log
-```
 
-### git show
-you can view the content of a commit uif you know the commit hash
+# Inspect the commit hash at the tip of the `main` branch:
+git log -1 main
 
-```
+# This should correspond to the contents of the file .git/refs/heads/main
+cat .git/refs/heads/main
+
+# git show
+# you can view the content of a commit if you know the commit hash 
+
 git show 85eca
+git show $(git log HEAD^)
 ```
 
 ### git rev-parse
@@ -47,11 +51,8 @@ git rev-parse HEAD
 git rev-parse 85ec
 
 # Do we have a tag?
-git rev-parse --verify v0.0.0
-
-
-VAR="refs/tags/v0.0.0"
-git rev-parse --verify $VAR^{commit}
+TAG="refs/tags/v0.0.0"
+git rev-parse --verify $TAG
 ```
 
 Some other uses for scripting:
@@ -62,4 +63,56 @@ git rev-parse --abbrev-ref HEAD
 
 # Get the absolute path of the repository
 git rev-parse --show-toplevel
+```
+
+## exercises
+
+Can we move the tag "v0.0.0" to another commit without ever creating a branch?
+
+In git, we generally work with branches, that's the recommended way. But it's possible to make a commit without a branch. This is called the "Detached HEAD" state. You have probably ended up there unintentionally.
+
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+1) Checkout a hash instead of a ref
+2) Make a commit
+3) Modify the ref for the tag
+
+
+```bash
+git checkout $(git rev-parse main)
+git branch
+
+echo "The Lost Ark" > 13_the_lost_ark.md
+git add 13_the_lost_ark.md
+git commit -m "my best multi-lingual pun this year"
+
+echo $(git rev-parse HEAD) > .git/refs/tags/v0.0.0
+git checkout v0.0.0
 ```
