@@ -10,24 +10,14 @@ Refs are stored as normal text files in the .git/refs directory
 $ tree .git/refs
 .git/refs
 ├── heads
-│   ├── feature
+│   ├── local_wip
 │   └── main
 ├── remotes
 │   └── origin
-│       ├── feature
 │       └── main
 ├── stash
 └── tags
     └── v0.0.0
-```
-
-```bash
-# Inspect the commit hash at the tip of the `main` branch:
-git log -1 main
-
-# This should correspond to the contents of the file .git/refs/heads/main
-cat .git/refs/heads/main
-
 ```
 
 
@@ -52,4 +42,24 @@ git show 85eca
 ```bash
 git rev-parse main
 git rev-parse HEAD
+
+# Get the full commit hash from a part of it
+git rev-parse 85ec
+
+# Do we have a tag?
+git rev-parse --verify v0.0.0
+
+
+VAR="refs/tags/v0.0.0"
+git rev-parse --verify $VAR^{commit}
+```
+
+Some other uses for scripting:
+
+```bash
+# Get the name of the current branch
+git rev-parse --abbrev-ref HEAD
+
+# Get the absolute path of the repository
+git rev-parse --show-toplevel
 ```
