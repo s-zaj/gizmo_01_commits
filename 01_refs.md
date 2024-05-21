@@ -12,11 +12,23 @@ $ tree .git/refs
 ├── heads
 │   ├── feature
 │   └── main
+├── remotes
+│   └── origin
+│       ├── feature
+│       └── main
+├── stash
 └── tags
     └── v0.0.0
 ```
 
+```bash
+# Inspect the commit hash at the tip of the `main` branch:
+git log -1 main
 
+# This should correspond to the contents of the file .git/refs/heads/main
+cat .git/refs/heads/main
+
+```
 
 
 ### git log
