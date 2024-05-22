@@ -104,11 +104,20 @@ $ git branch
 echo "The Lost Ark" > 13_the_lost_ark.md
 git add -A && git commit -m "my best multi-lingual pun so far"
 
-git clang-format HEAD~1
+# Whoops we forgot the '#' on the title.
 echo "# The Lost Ark" > 13_the_lost_ark.md
+# Modify the previous commit 'in-place'
 git commit --amend -a
 
-git tag v0
+# lightweight tag
+git tag -a v0_light
+
+# annotated, has metadata and can be gpg signed
+git tag -a v0_annotated -m "annotated 0"
+
+git tag
+git show v0_light
+git show v0_annotated
 ```
 
 If we switch to the main branch, Git will warn us. Let's disect the warning
