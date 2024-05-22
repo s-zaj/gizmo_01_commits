@@ -8,8 +8,6 @@ You can also refer to commits relative to another commit.
 
 # How the grandparent of the current HEAD
 git show HEAD~2
-
-
 ```
 
 ## the ^
@@ -27,8 +25,6 @@ git reset HEAD~3
 ```bash
 git rebase -i HEAD~2
 ```
-  
-
 
 ### Packed-refs
 
