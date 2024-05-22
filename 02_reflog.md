@@ -80,5 +80,13 @@ git reflog
 ### Case 2: Recover from accidental 'reset --hard'
 
 ```bash
+# Checkout existing feature branch
 git checkout feature
+
+# Hard reset to 2 commits before HEAD
+git reset --hard HEAD~2
+
+# Whoops
+
+git log
 ```
