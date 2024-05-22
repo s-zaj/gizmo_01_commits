@@ -1,4 +1,4 @@
-# Reflog: Git'sSafety Net
+# Reflog: Git's Safety Net
 
 It records chronologically almost every change you make in your repository, regardless of whether you committed or not.
 
@@ -8,12 +8,13 @@ git reflog
 
 We reference commits stored in the reflog using the `HEAD{}` syntax.
 
-
 ```bash
 git checkout HEAD@{32}
 ```
 
-### Exercises
+## Exercises
+
+### Case 1: Finding a lost commit
 
 Previously we created a tag on a commit which we made while in the Detached HEAD state.
 Life continues, and we switch to the main branch.
@@ -76,3 +77,8 @@ git reflog
 
 ```
 
+### Case 2: Recover from accidental 'reset --hard'
+
+```bash
+git checkout feature
+```
