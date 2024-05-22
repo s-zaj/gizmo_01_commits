@@ -17,7 +17,7 @@ $ tree .git/refs
 │       └── main
 ├── stash
 └── tags
-    └── v0.0.0
+    └── v0
 ```
 
 ```bash
@@ -51,7 +51,7 @@ git rev-parse HEAD
 git rev-parse 85ec
 
 # Do we have a tag?
-TAG="refs/tags/v0.0.0"
+TAG="refs/tags/v0"
 git rev-parse --verify $TAG
 ```
 
@@ -67,7 +67,7 @@ git rev-parse --show-toplevel
 
 ### Exercises
 
-`Can we move the tag "v0.0.0" to another commit without ever creating a branch?`
+`Can we move the tag "v0" to another commit without ever creating a branch?`
 
 Git likes to have branches, and it's difficult to track commits that are not on any branch.
 
