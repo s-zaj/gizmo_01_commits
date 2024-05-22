@@ -18,7 +18,7 @@ When looking at merge commits, we need to specify ^ to refer to the "second pare
 
 the `~` will always follow the "first parent"
 
-## examples
+## Examples
 
 ```bash
 git reset HEAD~3

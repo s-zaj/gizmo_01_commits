@@ -79,6 +79,8 @@ git reflog
 
 ### Case 2: Recover from accidental 'reset --hard'
 
+You made an awesome branch, but did not push, and reset it during debugging
+
 ```bash
 # Checkout existing feature branch
 git checkout feature
@@ -87,6 +89,23 @@ git checkout feature
 git reset --hard HEAD~2
 
 # Whoops
+git log
+```
 
+```bash
+# reflog to the rescue
+$ git reflog
+
+9716883 (HEAD -> feature) HEAD@{0}: reset: moving to HEAD~2
+80c81c9 (origin/feature) HEAD@{1}: checkout: moving from main to feature
+db5fd77 (origin/main, main) HEAD@{2}: checkout: moving from feature to main
+c51e638 HEAD@{3}: checkout: moving from feature to main
+bfcf6ea HEAD@{4}: commit: conclude idea
+a54e002 HEAD@{5}: commit: develop idea
+a312ce1 HEAD@{6}: commit: using git to invent a timemachine
+```
+
+```bash
+git checkout HEAD@{4}
 git log
 ```
