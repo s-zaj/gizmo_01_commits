@@ -1,4 +1,4 @@
-# Relative refs
+# Relative Refs
 
 You can also refer to commits relative to another commit.
 
@@ -27,3 +27,4 @@ git reset HEAD~3
 ```bash
 git rebase -i HEAD~2
 ```
+  

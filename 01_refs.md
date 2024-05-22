@@ -120,54 +120,83 @@ git rev-parse --abbrev-ref HEAD
 git rev-parse --show-toplevel
 ```
 
-## exercises
+### Exercises
 
-Can we move the tag "v0.0.0" to another commit without ever creating a branch?
+`Can we move the tag "v0.0.0" to another commit without ever creating a branch?`
 
-In git, we generally work with branches, that's the recommended way. But it's possible to make a commit without a branch. This is called the "Detached HEAD" state. You have probably ended up there unintentionally.
+Git likes to have branches, and it's difficult to track commits that are not on any branch.
 
+But it's possible to make a commit without a branch. This is called the "Detached HEAD" state (you've probably ended up there before)
 
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-1) Checkout a hash instead of a ref
-2) Make a commit
-3) Modify the ref for the tag
-
+#### 1) Checkout a hash instead of a ref
 
 ```bash
-git checkout $(git rev-parse main)
-git branch
+# Checkout the latest commit on main, but detaching from main
+$ git checkout $(git rev-parse main)
 
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+# Asking which branch we are on tells us which commit we detached from the tree
+$ git branch
+
+* (HEAD detached at e59b306)
+```
+
+#### 2) Make a commit and tag
+
+```bash
 echo "The Lost Ark" > 13_the_lost_ark.md
-git add 13_the_lost_ark.md
-git commit -m "my best multi-lingual pun this year"
+git add -A && git commit -m "my best multi-lingual pun so far"
 
-echo $(git rev-parse HEAD) > .git/refs/tags/v0.0.0
-git checkout v0.0.0
+git tag v0
+```
+
+If we switch to the main branch, Git will warn us. Let's disect the warning
+
+```bash
+$ git checkout v0
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+# "you may do so (now or later)"
+
+# We get warned again when switching to main
+
+$ git checkout main
+
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  c8446db my best multi-lingual pun so far
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> c8446db
+
+# The tag still exists
+git rev-parse --verify v0
+git checkout v0
 ```
