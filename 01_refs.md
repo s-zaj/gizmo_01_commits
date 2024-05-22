@@ -104,6 +104,10 @@ $ git branch
 echo "The Lost Ark" > 13_the_lost_ark.md
 git add -A && git commit -m "my best multi-lingual pun so far"
 
+git clang-format HEAD~1
+echo "# The Lost Ark" > 13_the_lost_ark.md
+git commit --amend -a
+
 git tag v0
 ```
 
